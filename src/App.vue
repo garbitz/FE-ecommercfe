@@ -7,7 +7,12 @@
         <div class="product-details" v-if="!unavailableCategory">
           <h2 :class="categoryTitleClass">{{ product.title }}</h2>
           <p>Category: {{ product.category }}</p>
-          <p>Rating: {{ product.rating.rate }}</p>
+            <div class="product-rating">
+            <!-- Show the rating as stars -->
+            <div class="stars">
+              <span :style="{ width: (product.rating.rate * 20) + '%' }"></span>
+            </div>
+          </div>
           <p>{{ product.description }}</p>
           <h2 :class="categoryPriceClass">{{ product.price }}</h2>
           <div class="product-buttons">
@@ -291,6 +296,33 @@ body.women-clothing-bg {
   }
 }
 
+.product-rating {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.stars {
+  display: inline-block;
+  font-size: 20px;
+  color: #FFD700;
+  /* Add outline to stars for better visibility */
+  text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0.5),
+    1px -1px 0 rgba(0, 0, 0, 0.5),
+    -1px 1px 0 rgba(0, 0, 0, 0.5),
+    1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.stars span {
+  display: block;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.stars span::before {
+  content: "\2605\2605\2605\2605\2605";
+}
 
 
 </style>

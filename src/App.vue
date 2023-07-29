@@ -9,7 +9,7 @@
           <p>Category: {{ product.category }}</p>
           <p>Rating: {{ product.rating.rate }}</p>
           <p>{{ product.description }}</p>
-          <p :class="categoryPriceClass">{{ product.price }}</p>
+          <h2 :class="categoryPriceClass">{{ product.price }}</h2>
           <div class="product-buttons">
             <button @click="buyNow">Buy Now</button>
             <button @click="nextProduct">Next Product</button>
@@ -25,7 +25,10 @@
     </div>
 
     <div v-else>
-      <p>Loading...</p>
+      <div class="product-card">
+        <!-- The spinner is now part of the card content -->
+        <div class="spinner"></div>
+      </div>    
     </div>
   </div>
 </template>
@@ -124,6 +127,12 @@ export default {
 <style>
 /* Your other CSS styles */
 
+body {
+  background: linear-gradient(180deg, #dcdcdc 60%, #fff 60%); /* Men's Clothing gradient background */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
+
 body.men-clothing-bg {
   background: linear-gradient(180deg, #d6e6ff 60%, #fff 60%); /* Men's Clothing gradient background */
 }
@@ -217,6 +226,7 @@ body.women-clothing-bg {
   font-weight: bold;
   font-size: 18px;
   color: #ff0000; /* Red color for the unavailable message */
+  
 }
 
 .product-card.unavailable-style button {
@@ -235,29 +245,11 @@ body.women-clothing-bg {
   font-size: 20px;
 }
 
-/* Your other CSS styles */
-
-/* ... (previously provided styles) ... */
-
 .product-title.women-clothing-title {
   color: #720060;
   font-weight: bold;
   font-size: 20px;
 }
-
-/* .product-category-rating {
-  color: #444;
-  font-size: 14px;
-  margin: 0;
-}
-
-.product-description {
-  margin: 10px 0;
-}
-
-.product-price {
-  margin: 0;
-} */
 
 .product-price.men-clothing-price {
   color: #002772;
@@ -276,6 +268,29 @@ body.women-clothing-bg {
   font-size: 18px;
   color: #ff0000; /* Red color for the unavailable message */
 }
+
+.spinner {
+  position: absolute; /* Position the spinner absolutely within the card */
+  top: 50%; /* Move the spinner 50% from the top of the card */
+  left: 50%; /* Move the spinner 50% from the left of the card */
+  transform: translate(-50%, -50%); /* Center the spinner both horizontally and vertically */
+  border: 5px solid rgba(0, 0, 0, 0.3);
+  border-top: 5px solid #002772; /* Set the spinner color (blue) */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite; /* Create the spinner animation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 
 </style>
